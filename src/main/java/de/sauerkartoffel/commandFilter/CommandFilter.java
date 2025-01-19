@@ -41,7 +41,7 @@ public class CommandFilter {
         event.getRootNode().getChildren().removeIf(child -> {
             String command = child.getName().toLowerCase();
 
-            //Checking if its xServer or not, if its "*:*" or allowedCommand
+            //Checking if its xServer or not, if its "*:*" or allowedCommand!
             if (serverName.startsWith("xs_")) {
                 return command.contains(":") && !allowedCommands.contains(command);
             } else {
