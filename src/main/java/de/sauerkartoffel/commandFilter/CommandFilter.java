@@ -13,7 +13,7 @@ import java.util.List;
 @Plugin(id = "commandfilter", name = "CommandFilter", version = BuildConstants.VERSION)
 public class CommandFilter {
 
-    private final List<String> allowedCommands = Arrays.asList("minecraft:give", "minecraft:tp", "minecraft:kill");
+    private final List<String> allowedCommands = Arrays.asList("minecraft:give", "minecraft:tp", "minecraft:kill", "minecraft:clear");
 
     @Subscribe
     public void onCommand(CommandExecuteEvent event) {
