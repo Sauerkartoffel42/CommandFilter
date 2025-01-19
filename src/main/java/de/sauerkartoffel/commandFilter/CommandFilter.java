@@ -19,11 +19,13 @@ public class CommandFilter {
     public void onCommand(CommandExecuteEvent event) {
         String command = event.getCommand();
 
+        //Getting the command
         int spaceIndex = command.indexOf(" ");
 
         if (spaceIndex != -1)
-            command = command.substring(0, spaceIndex);  // Get the part before the first space
+            command = command.substring(0, spaceIndex);
 
+        //Checking for *:* and allowedCommands command
         if (command.contains(":") && allowedCommands.stream().noneMatch(command::startsWith)) {
             event.setResult(CommandExecuteEvent.CommandResult.denied());
             event.getCommandSource().sendMessage(Component.text("§7Verwende §6/help §7für Hilfe oder wende dich an unser Team im §6/discord§7."));
@@ -33,12 +35,13 @@ public class CommandFilter {
     @Subscribe
     public void onTab(PlayerAvailableCommandsEvent event) {
         Player player = event.getPlayer();
-
         String serverName = player.getCurrentServer().map(server -> server.getServerInfo().getName()).orElse("");
 
+        //Getting root node to check for commands
         event.getRootNode().getChildren().removeIf(child -> {
             String command = child.getName().toLowerCase();
 
+            //Checking if its xServer or not, if its "*:*" or allowedCommand
             if (serverName.startsWith("xs_")) {
                 return command.contains(":") && !allowedCommands.contains(command);
             } else {
