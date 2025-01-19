@@ -45,10 +45,6 @@ def generateTemplates = tasks.register('generateTemplates', Copy) { task ->
     task.expand props
 }
 
-tasks.jar {
-    destinationDirectory.set(file('C:/Users/sauer/Desktop/Velocity Test/velocity/plugins'))
-}
-
 sourceSets.main.java.srcDir(generateTemplates.map { it.outputs })
 
 project.idea.project.settings.taskTriggers.afterSync generateTemplates
