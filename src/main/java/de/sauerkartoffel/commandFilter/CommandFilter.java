@@ -13,7 +13,7 @@ import java.util.List;
 @Plugin(id = "commandfilter", name = "CommandFilter", version = BuildConstants.VERSION)
 public class CommandFilter {
 
-    private final List<String> allowedCommands = Arrays.asList("minecraft:give", "minecraft:tp", "minecraft:kill", "minecraft:clear");
+    private final List<String> allowedCommands = Arrays.asList("minecraft:give", "minecraft:tp", "minecraft:kill", "minecraft:clear","minecraft:gamemode");
 
     @Subscribe
     public void onCommand(CommandExecuteEvent event) {
@@ -41,7 +41,7 @@ public class CommandFilter {
         event.getRootNode().getChildren().removeIf(child -> {
             String command = child.getName().toLowerCase();
 
-            //Checking if its xServer or not, if its "*:*" or allowedCommand!
+            //Checking if its xServer or not and if its "*:*" or allowedCommand!
             if (serverName.startsWith("xs_")) {
                 return command.contains(":") && !allowedCommands.contains(command);
             } else {
